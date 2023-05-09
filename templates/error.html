@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta property="og:title" content="The Vocabulary List"/>
+    <meta property="og:description" content="A list of words I've recently got"/>
+    <meta property="og:image" content="{{url_for('static', filename='logo_red.png')}}"/>
+
+    <!-- Menambahkan Logo pada Server dalam Tab Browser -->
+    <link rel="shortcut icon" href="{{url_for('static', filename='favico.ico')}}" type="image/x-icon" />
+    <link rel="icon" href="{{url_for('static', filename='favico.ico')}}" type="image/x-icon" />
+
+    <title>Word Not Found</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <link href="{{ url_for('static', filename='mystyle.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="wrap">
+        <div class="banner" onclick="window.location.href = '/'">
+        </div>
+        <div class="container">
+            <h1><b>Ooppss!</b></h1>
+            <h2>Could not find the word, <b>"{{word}}"</b></h2>
+            {% if suggestions %}
+            <h5>Howover, did you mean one of these words</h5>
+            {% for suggestion in suggestions %}
+            <a href="/detail/{{suggestion}}" class="btn btn-warning" style="margin: 0 8px 8px 0">{{suggestion}}</a>
+            {% endfor %} {% endif%}
+        </div>
+    </div>
+  
+    <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Main Page</a>
+                </li>
+            </ul>
+            <p class="text-center text-body-secondary">© 2023 Larrrrras</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
