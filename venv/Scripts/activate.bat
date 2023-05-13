@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\User\Documents\API Dict\venv
+set VIRTUAL_ENV=C:\Users\User\Documents\Coding\API Dict 11\API Dict 11-2\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

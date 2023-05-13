@@ -127,8 +127,11 @@
                             let id = example.id;
                             let sentence = example.example;
                             temp_html += `
-                    <li>${sentence}&nbsp;&nbsp;&nbsp;<a
-                            href="javascript:delete_ex('${id}')">delete</a></li>
+                    <li>${sentence}&nbsp;&nbsp;&nbsp;
+                        <a style="color:red;"href="javascript:delete_ex('${id}')">
+                            <i style="font-size:24px" class="fa">&#xf014;</i>
+                        </a>
+                    </li>
                             `;
                         }
                         list.append(temp_html)
@@ -219,7 +222,7 @@
                 SAVE
             </button>
             {% else %}
-            <button id="btn-delete" class="btn btn-sparta btn-lg">
+            <button onclick=delete_word() id="btn-delete" class="btn btn-sparta btn-lg">
                 DELETE
             </button>
 

@@ -1,16 +1,22 @@
 from flask import Flask,redirect,url_for,render_template,request,jsonify
 from pymongo import MongoClient
 import requests
+import os 
+from os.path import join, dirname
+from dotenv import load_dotenv
 from datetime import datetime
 from bson import ObjectId
 
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+MONGODB_URI = os.environ.get("MONGODB_URI")
+DB_NAME =  os.environ.get("DB_NAME")
+
+client = MongoClient(MONGODB_URI)
+db = client[DB_NAME]
+
 app = Flask(__name__)
-
-# password = 'laras'  
-# cxn_str = f'mongodb+srv://larrrrras:<password>@cluster.84flxkt.mongodb.net/?retryWrites=true&w=majority'
-client = MongoClient('mongodb://larrrrras:laras@ac-d3aa5o8-shard-00-00.84flxkt.mongodb.net:27017,ac-d3aa5o8-shard-00-01.84flxkt.mongodb.net:27017,ac-d3aa5o8-shard-00-02.84flxkt.mongodb.net:27017/?ssl=true&replicaSet=atlas-oy4o3e-shard-0&authSource=admin&retryWrites=true&w=majority')
-
-db = client.Personal_Word_List
 
 @app.route('/')
 def main():
@@ -67,7 +73,7 @@ def save_word():
     db.words.insert_one(doc)
     return jsonify({
         'result': 'success',
-        'msg': f'The Word {word} was saved!',
+        'msg': f'The word "{word}" was saved!',
     })
 
 @app.route('/api/delete_word', methods=['POST'])
@@ -77,7 +83,7 @@ def delete_word():
     db.examples.delete_many({'word': word})
     return jsonify({
         'result': 'success',
-        'msg': f'The Word {word} was deleted!'
+        'msg': f'The word "{word}" was deleted!'
     })
 
 @app.route('/api/get_exs', methods=['GET'])
